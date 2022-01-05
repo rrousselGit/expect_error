@@ -1,5 +1,5 @@
 The `expect_error` package is a testing library inspired by Typescript's
-`// @espect-error`, designed to help package authors to test compilation errors.
+`// @expect-error`, designed to help package authors to test compilation errors.
 
 ## Usage
 
