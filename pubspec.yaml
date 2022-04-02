@@ -1,6 +1,6 @@
 name: expect_error
 description: A testing utility for checking compilation errors
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/rrousselGit/expect_error
 
 environment: 
