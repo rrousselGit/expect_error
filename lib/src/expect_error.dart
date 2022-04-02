@@ -29,9 +29,7 @@ class Library {
     required String path,
     required String packageRoot,
   }) async {
-    final packageRootUri =
-        Uri.parse('file://${Directory(packageRoot).absolute.path}')
-            .normalizePath();
+    final packageRootUri = Uri.file(Directory(packageRoot).absolute.path);
 
     final packageConfigString = File(
       _path.join(packageRoot, '.dart_tool', 'package_config.json'),
@@ -46,7 +44,7 @@ class Library {
 
     return Library(
       packageName: packageName,
-      path: _path.normalize(tempTestFilePath),
+      path: _path.normalize(tempTestFilePath).replaceAll(r'\', '/'),
       packageConfig: packageConfig,
     );
   }
@@ -70,13 +68,13 @@ class Library {
     }
 
     final tempTestFilePath = _path.join(
-      Directory.fromUri(Uri.parse(mainFrame.library)).parent.path,
+      Directory.fromUri(Uri.file(mainFrame.library)).parent.path,
       testFilePath,
     );
 
     return Library(
       packageName: pubSpec.name!,
-      path: _path.normalize(tempTestFilePath),
+      path: _path.normalize(tempTestFilePath).replaceAll(r'\', '/'),
       // packageConfig: null, // use package definition from the current Isolate
     );
   }
