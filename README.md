@@ -68,7 +68,6 @@ void main() {
 '''), compiles);
 ```
 
-
 Then this test will fail. Because while the code block indeed contains an
 `INVALID_ASSIGMENT` error, the error isn't on the `print` but instead on
 the `int value = 'string'`.
@@ -113,7 +112,6 @@ final provider = Provider<int>((ref) {
 });
 '''), compiles);
 ```
-
 
 The imports available within our code blocks are dependent on that `library` variable.
 When we do:
@@ -199,7 +197,7 @@ This `expect_error_test` app would depend on `expect_error`:
 
 ```yaml
 name: expect_error_test
-...
+---
 dev_dependencies:
   expect_error: ...
 ```
@@ -232,3 +230,11 @@ folder as our test, we were able to make it behave as if our code block was
 within `my_package`.
 
 This way, our tests using `expect_error` are correctly able to import Flutter code.
+
+## Sponsors
+
+<p align="center">
+  <a href="https://raw.githubusercontent.com/rrousselGit/freezed/master/sponsorkit/sponsors.svg">
+    <img src='https://raw.githubusercontent.com/rrousselGit/freezed/master/sponsorkit/sponsors.svg'/>
+  </a>
+</p>
