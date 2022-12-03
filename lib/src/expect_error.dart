@@ -29,27 +29,21 @@ class Library {
     required String path,
     required String packageRoot,
   }) async {
-    final packageRootUri = Uri.file(Directory(packageRoot).absolute.path);
-
-    final packageConfigString = File(
-      _path.join(packageRoot, '.dart_tool', 'package_config.json'),
-    ).readAsStringSync();
-
+    final packageConfigFile =
+        File(_path.join(packageRoot, '.dart_tool', 'package_config.json'));
     final packageConfig = PackageConfig.parseString(
-      packageConfigString,
-      packageRootUri,
+      packageConfigFile.readAsStringSync(),
+      packageConfigFile.absolute.uri,
     );
-
-    final tempTestFilePath = _path.join(packageRoot, path);
 
     return Library(
       packageName: packageName,
-      path: _path.normalize(tempTestFilePath).replaceAll(r'\', '/'),
+      path: _path.normalize(path).replaceAll(r'\', '/'),
       packageConfig: packageConfig,
     );
   }
 
-  /// Decode the [StackTrace] to try and extract informations about the current
+  /// Decode the [StackTrace] to try and extract information about the current
   /// library.
   ///
   /// This should only be used within the "main" of a test file.
@@ -100,7 +94,7 @@ class Code {
   /// The file content
   final String code;
 
-  /// Metadatas about the file
+  /// Metadata about the file
   final Library library;
 }
 

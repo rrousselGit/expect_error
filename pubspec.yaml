@@ -3,7 +3,7 @@ description: A testing utility for checking compilation errors
 version: 1.0.4
 repository: https://github.com/rrousselGit/expect_error
 
-environment: 
+environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
