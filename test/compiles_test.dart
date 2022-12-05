@@ -33,6 +33,22 @@ void main() {
     expectTestPassed(liveTest);
   });
 
+  test('supports relative path dependencies', () async {
+    final library = await Library.custom(
+      packageName: 'example',
+      path: 'lib/foo.dart',
+      packageRoot: 'flutter_package',
+    );
+
+    final liveTest = await runTestBody(() async {
+      await expectLater(library.withCode('''
+import 'package:expect_error/expect_error.dart';
+'''), compiles);
+    });
+
+    expectTestPassed(liveTest);
+  });
+
   test('can use relative imports based on the file location', () async {
     final liveTest = await runTestBody(() async {
       await expectLater(library.withCode('''
