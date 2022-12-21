@@ -1,3 +1,8 @@
+# 1.0.5
+
+- Allow both analyzer 5.0.0 and analyzer 4.0.0 (thanks to @blaugold)
+- fix resolution of relative paths in package_config.json (thanks to @blaugold)
+
 # 1.0.4
 
 Upgrade to support analyzer 5.0.0
