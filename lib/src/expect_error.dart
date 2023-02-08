@@ -4,7 +4,6 @@ import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/diagnostic/diagnostic.dart';
 import 'package:analyzer/error/error.dart';
 import 'package:analyzer/source/source_range.dart';
-import 'package:build_resolvers/build_resolvers.dart';
 import 'package:build_test/build_test.dart';
 import 'package:collection/collection.dart';
 import 'package:package_config/package_config.dart';
