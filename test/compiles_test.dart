@@ -1,5 +1,6 @@
 import 'package:expect_error/src/expect_error.dart';
 import 'package:test/test.dart';
+import 'package:test_api/src/backend/state.dart';
 
 import 'utils.dart';
 
@@ -218,5 +219,54 @@ void main() {
       liveTest,
       'Expected error with code INVALID_ASSIGNMENT but none were found',
     );
+  });
+
+  test('both tests succeed', () async {
+    final liveTest = await runTestBody(() async {
+      await expectLater(library.withCode(''), compiles);
+      await expectLater(library.withCode(''), compiles);
+    });
+
+    expectTestPassed(liveTest);
+  });
+  test('first test succeeds, second fails', () async {
+    final liveTest = await runTestBody(() async {
+      await expectLater(library.withCode(''), compiles);
+      await expectLater(library.withCode('NoSuchType? test;'), compiles);
+    });
+
+    expectTestFailed(
+      liveTest,
+      "No expect-error found for code UNDEFINED_CLASS but an error was found: Undefined class 'NoSuchType'.",
+    );
+  });
+  test('first test fails, second succeeds', () async {
+    final liveTest = await runTestBody(() async {
+      await expectLater(library.withCode('NoSuchType? test;'), compiles);
+      await expectLater(library.withCode(''), compiles);
+    });
+
+    expectTestFailed(
+      liveTest,
+      "No expect-error found for code UNDEFINED_CLASS but an error was found: Undefined class 'NoSuchType'.",
+    );
+  });
+  test('both test fail', () async {
+    final liveTest = await runTestBody(() async {
+      await expectLater(library.withCode('NoSuchType? test;'), compiles);
+      await expectLater(library.withCode('NoSuchType? test;'), compiles);
+    });
+
+    expect(liveTest.state.status, equals(Status.complete));
+    expect(liveTest.state.result, equals(Result.failure));
+    expect(liveTest.errors, hasLength(2));
+    expect(
+        liveTest.errors.first.error,
+        isTestFailure(
+            "No expect-error found for code UNDEFINED_CLASS but an error was found: Undefined class 'NoSuchType'."));
+    expect(
+        liveTest.errors[1].error,
+        isTestFailure(
+            "No expect-error found for code UNDEFINED_CLASS but an error was found: Undefined class 'NoSuchType'."));
   });
 }
