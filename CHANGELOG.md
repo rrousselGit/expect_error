@@ -1,3 +1,7 @@
+# 1.0.6
+
+fix: using multiple compiles in a single test (thanks to @fischerscode)
+
 # 1.0.5
 
 - Allow both analyzer 5.0.0 and analyzer 4.0.0 (thanks to @blaugold)
