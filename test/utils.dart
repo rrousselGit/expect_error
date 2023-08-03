@@ -113,7 +113,7 @@ Future<void> expectTestBlocks(
 ///
 /// This is typically used to run multiple tests where later tests make
 /// assertions about the results of previous ones.
-Future expectTestsPass(void Function() body) async {
+Future<void> expectTestsPass(void Function() body) async {
   final engine = declareEngine(body);
   final success = await engine.run();
 

@@ -143,7 +143,7 @@ class _CompileMatcher extends Matcher {
       description.add('Dart code that compiles');
 
   @override
-  bool matches(covariant Code source, Map matchState) {
+  bool matches(covariant Code source, Map<Object?, Object?> matchState) {
     expectLater(_compile(source), completes);
     return true;
   }

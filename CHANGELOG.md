@@ -1,3 +1,7 @@
+# 1.0.7
+
+Upgraded analyzer to support 6.0.0
+
 # 1.0.6
 
 fix: using multiple compiles in a single test (thanks to @fischerscode)
