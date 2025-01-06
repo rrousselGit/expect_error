@@ -1,3 +1,7 @@
+## 1.0.8
+
+Upgrade analyzer to support 7.0.0
+
 # 1.0.7
 
 Upgraded analyzer to support 6.0.0
