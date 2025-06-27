@@ -199,11 +199,11 @@ ${code.code}''';
   // '.dart' has the length 5
   final tempFileName =
       '${code.library.path.substring(0, code.library.path.length - 5)}_${source.hashCode}.dart';
-
   final main = await resolveSources(
     {'${code.library.packageName}|$tempFileName': source},
     (r) => r.findLibraryByName('main'),
     packageConfig: code.library.packageConfig,
+    readAllSourcesFromFilesystem: true,
   );
 
   final errorResult = await main!.session.getErrors(
