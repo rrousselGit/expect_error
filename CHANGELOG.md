@@ -1,3 +1,7 @@
+## 1.0.10
+
+Fix import support
+
 ## 1.0.9
 
 Support latest dependencies
