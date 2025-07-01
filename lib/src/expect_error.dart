@@ -207,6 +207,7 @@ ${code.code}''';
     {'${code.library.packageName}|$tempFileName': source},
     (r) => r.findLibraryByName('main'),
     packageConfig: code.library.packageConfig,
+    readAllSourcesFromFilesystem: true,
   );
 
   final errorResult = await main!.session.getErrors(
