@@ -8,7 +8,7 @@ import 'package:build_test/build_test.dart';
 import 'package:collection/collection.dart';
 import 'package:package_config/package_config.dart';
 import 'package:path/path.dart' as _path;
-import 'package:pubspec/pubspec.dart';
+import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:stack_trace/stack_trace.dart';
 import 'package:test/expect.dart';
 import 'package:test/test.dart';
@@ -50,14 +50,18 @@ class Library {
   static Future<Library> parseFromStacktrace() async {
     const testFilePath = '___temporary_test____.dart';
 
-    final pubSpec = await PubSpec.load(Directory.current);
+    final pubspecFile = File('pubspec.yaml');
+    final pubSpec = Pubspec.parse(
+      pubspecFile.readAsStringSync(),
+      sourceUrl: pubspecFile.absolute.uri,
+    );
 
     // Relying on the Stacktrace to obtain the current test file name
     final stacktrace = Trace.from(StackTrace.current);
     final mainFrame = stacktrace.frames
         .lastWhereOrNull((element) => element.uri.isScheme('FILE'));
 
-    if (mainFrame == null || pubSpec.name == null) {
+    if (mainFrame == null) {
       throw StateError('Failed to determine the current test file location');
     }
 
@@ -67,7 +71,7 @@ class Library {
     );
 
     return Library(
-      packageName: pubSpec.name!,
+      packageName: pubSpec.name,
       path: _path.normalize(tempTestFilePath).replaceAll(r'\', '/'),
       // packageConfig: null, // use package definition from the current Isolate
     );

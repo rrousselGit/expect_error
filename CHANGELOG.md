@@ -1,6 +1,6 @@
 ## 1.0.9
 
-Upgrade to `build` 2.5.0 and `build_test` 3.2.1.
+Support latest dependencies
 
 ## 1.0.8
 
