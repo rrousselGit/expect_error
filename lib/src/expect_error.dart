@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/diagnostic/diagnostic.dart';
-import 'package:analyzer/error/error.dart';
 import 'package:analyzer/source/source_range.dart';
 import 'package:build_test/build_test.dart';
 import 'package:collection/collection.dart';
@@ -180,7 +179,7 @@ ${code.code}''';
       .flattened
       .toList();
 
-  bool verifyAnalysisError(AnalysisError error) {
+  bool verifyAnalysisError(Diagnostic error) {
     final sourceBeforeError =
         error.source.contents.data.substring(0, error.offset);
 
@@ -191,7 +190,7 @@ ${code.code}''';
 
     for (final code in expectErrorCodes) {
       if (previousLineRange.contains(code.startOffset) &&
-          code.code == error.errorCode.name) {
+          code.code == error.diagnosticCode.name) {
         code.visited = true;
         return true;
       }
@@ -213,14 +212,14 @@ ${code.code}''';
   final errorResult = await main!.session.getErrors(
     '/${code.library.packageName}/$tempFileName',
   ) as ErrorsResult;
-  final criticalErrors = errorResult.errors
+  final criticalErrors = errorResult.diagnostics
       .where((element) => element.severity == Severity.error)
       .toList();
 
   for (final error in criticalErrors) {
     if (!verifyAnalysisError(error)) {
       fail(
-        'No expect-error found for code ${error.errorCode.name} '
+        'No expect-error found for code ${error.diagnosticCode.name} '
         'but an error was found: ${error.message}',
       );
     }
