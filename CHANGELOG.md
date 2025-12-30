@@ -1,3 +1,7 @@
+## 1.0.12
+
+Support analyzer 9.0.0
+
 ## 1.0.11
 
 Support analyzer 8.0.0
