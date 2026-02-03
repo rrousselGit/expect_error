@@ -1,4 +1,4 @@
-## Unreleased patch
+## 1.0.13 - 2026-02-03
 
 Support analyzer 10.0
 
@@ -54,3 +54,4 @@ Fixed expect_error on windows
 # 1.0.0
 
 Initial release
+
