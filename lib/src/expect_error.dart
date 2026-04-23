@@ -103,7 +103,7 @@ class Code {
 
 /// Analyze a [Code] instance and verify that it has no error.
 ///
-/// If the code contains comments under the form of `// expect-error: ERROR_CODE`,
+/// If the code contains comments under the form of `// expect-error: error_code`,
 /// [compiles] will expect that the very next line of code has an error with
 /// the matching code.
 ///
@@ -131,7 +131,7 @@ class Code {
 ///
 /// void main() {
 ///   final counter = Counter();
-///   // expect-error: INVALID_ASSIGNMENT
+///   // expect-error: invalid_assignment
 ///   counter.count = 'string';
 /// }
 /// '''), compiles);
@@ -190,7 +190,7 @@ ${code.code}''';
 
     for (final code in expectErrorCodes) {
       if (previousLineRange.contains(code.startOffset) &&
-          code.code == error.diagnosticCode.name) {
+          code.code == error.diagnosticCode.lowerCaseName) {
         code.visited = true;
         return true;
       }
@@ -219,7 +219,7 @@ ${code.code}''';
   for (final error in criticalErrors) {
     if (!verifyAnalysisError(error)) {
       fail(
-        'No expect-error found for code ${error.diagnosticCode.name} '
+        'No expect-error found for code ${error.diagnosticCode.lowerCaseName} '
         'but an error was found: ${error.message}',
       );
     }

@@ -17,7 +17,7 @@ void main() async {
 
   test('String is not assignable to int', () async {
     await expectLater(library.withCode('''
-// expect-error: INVALID_ASSIGNMENT
+// expect-error: invalid_assignment
 int value = "string";
 '''), compiles);
   });
@@ -30,7 +30,7 @@ This example tests that the code:
 int value = "string";
 ```
 
-emits the compilation error "INVALID_ASSIGNMENT".
+emits the compilation error "invalid_assignment".
 
 ### FAQ: Why use a comment in the code block instead of a matcher?
 
@@ -38,7 +38,7 @@ You may wonder why:
 
 ```dart
 await expectLater(library.withCode('''
-// expect-error: INVALID_ASSIGNMENT
+// expect-error: invalid_assignment
 int value = "string";
 '''), compiles);
 ```
@@ -48,7 +48,7 @@ is preferrable to:
 ```dart
 await expectLater(library.withCode('''
 int value = "string";
-'''), throwsCompilationError('INVALID_ASSIGNMENT'));
+'''), throwsCompilationError('invalid_assignment'));
 ```
 
 The reason why `expect_error` relies on a comment is because a comment
@@ -61,7 +61,7 @@ As such, if we do:
 ```dart
 await expectLater(library.withCode('''
 void main() {
-  // expect-error: INVALID_ASSIGNMENT
+  // expect-error: invalid_assignment
   print('a');
   int value = "string";
 }
@@ -78,7 +78,7 @@ To fix out test, we would have to move the comment on the line before the error:
 await expectLater(library.withCode('''
 void main() {
   print('a');
-  // expect-error: INVALID_ASSIGNMENT
+  // expect-error: invalid_assignment
   int value = "string";
 }
 '''), compiles);
@@ -93,7 +93,7 @@ them with a `,`:
 await expectLater(library.withCode(r'''
 String fn(int a) => '';
 
-// expect-error: NOT_ENOUGH_POSITIONAL_ARGUMENTS, INVALID_ASSIGNMENT
+// expect-error: not_enough_positional_arguments, invalid_assignment
 int a = fn();
 '''), compiles);
 ```
@@ -107,7 +107,7 @@ await expectLater(library.withCode(r'''
 import 'package:riverpod/riverpod.dart';
 
 final provider = Provider<int>((ref) {
-  // expect-error: INVALID_ASSIGNMENT
+  // expect-error: invalid_assignment
   return 'string';
 });
 '''), compiles);
@@ -216,7 +216,7 @@ void main() {
 import 'package:my_package/my_widget.dart';
 
 void main() {
-  // expect-error: MISSING_REQUIRED_ARGUMENT
+  // expect-error: missing_required_argument
   MyWidget();
 }
 '''), compiles);

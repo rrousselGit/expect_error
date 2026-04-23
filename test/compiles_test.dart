@@ -20,7 +20,7 @@ Future<void> main() async {
 import 'package:flutter/material.dart';
 import 'widget.dart';
 
-// expect-error: NON_ABSTRACT_CLASS_INHERITS_ABSTRACT_MEMBER
+// expect-error: non_abstract_class_inherits_abstract_member
 class Check extends StatelessWidget {
   const Check({Key? key}): super(key: key);
 }
@@ -68,7 +68,7 @@ void main() {
     final liveTest = await runTestBody(() async {
       await expectLater(library.withCode('''
 void main() {
-  // expect-error: INVALID_ASSIGNMENT
+  // expect-error: invalid_assignment
   int a = '42';
 }
 '''), compiles);
@@ -84,7 +84,7 @@ void main() {
       await expectLater(library.withCode('''
 String fn(int a) => '';
 void main() {
-  // expect-error: NOT_ENOUGH_POSITIONAL_ARGUMENTS, INVALID_ASSIGNMENT
+  // expect-error: not_enough_positional_arguments, invalid_assignment
   int a = fn();
 }
 '''), compiles);
@@ -96,7 +96,7 @@ void main() {
       await expectLater(library.withCode('''
 String fn(int a) => '';
 void main() {
-  // expect-error: NOT_ENOUGH_POSITIONAL_ARGUMENTS,INVALID_ASSIGNMENT
+  // expect-error: not_enough_positional_arguments,invalid_assignment
   int a = fn();
 }
 '''), compiles);
@@ -110,7 +110,7 @@ void main() {
     final liveTest = await runTestBody(() async {
       await expectLater(library.withCode('''
 void main() {
-  // expect-error: INVALID_ASSIGNMENT
+  // expect-error: invalid_assignment
   int b = '21';
   int a = '42';
 }
@@ -119,7 +119,7 @@ void main() {
 
     expectTestFailed(
       liveTest,
-      'No expect-error found for code INVALID_ASSIGNMENT but an error was found: '
+      'No expect-error found for code invalid_assignment but an error was found: '
       "A value of type 'String' can't be assigned to a variable of type 'int'.",
     );
   });
@@ -129,7 +129,7 @@ void main() {
       await expectLater(library.withCode('''
 String fn(int a) => '';
 void main() {
-  // expect-error: NOT_ENOUGH_POSITIONAL_ARGUMENTS
+  // expect-error: not_enough_positional_arguments
   int a = fn();
 }
 '''), compiles);
@@ -137,7 +137,7 @@ void main() {
 
     expectTestFailed(
       liveTest,
-      'No expect-error found for code INVALID_ASSIGNMENT but an error was found: '
+      'No expect-error found for code invalid_assignment but an error was found: '
       "A value of type 'String' can't be assigned to a variable of type 'int'.",
     );
   });
@@ -154,7 +154,7 @@ void main() {
 
     expectTestFailed(
       liveTest,
-      'No expect-error found for code INVALID_ASSIGNMENT but an error was found: '
+      'No expect-error found for code invalid_assignment but an error was found: '
       "A value of type 'String' can't be assigned to a variable of type 'int'.",
     );
 
@@ -169,7 +169,7 @@ void main() {
 
     expectTestFailed(
       liveTest2,
-      'No expect-error found for code INVALID_ASSIGNMENT but an error was found: '
+      'No expect-error found for code invalid_assignment but an error was found: '
       "A value of type 'String' can't be assigned to a variable of type 'int'.",
     );
 
@@ -184,7 +184,7 @@ void main() {
 
     expectTestFailed(
       liveTest3,
-      'No expect-error found for code INVALID_ASSIGNMENT but an error was found: '
+      'No expect-error found for code invalid_assignment but an error was found: '
       "A value of type 'String' can't be assigned to a variable of type 'int'.",
     );
   });
@@ -199,7 +199,7 @@ void main() {
     });
     expectTestFailed(
       liveTest,
-      'No expect-error found for code INVALID_ASSIGNMENT but an error was found: '
+      'No expect-error found for code invalid_assignment but an error was found: '
       "A value of type 'String' can't be assigned to a variable of type 'int'.",
     );
   });
@@ -209,7 +209,7 @@ void main() {
     final liveTest = await runTestBody(() async {
       await expectLater(library.withCode('''
 void main() {
-  // expect-error: INVALID_ASSIGNMENT
+  // expect-error: invalid_assignment
   int a = 42;
 }
 '''), compiles);
@@ -217,7 +217,7 @@ void main() {
 
     expectTestFailed(
       liveTest,
-      'Expected error with code INVALID_ASSIGNMENT but none were found',
+      'Expected error with code invalid_assignment but none were found',
     );
   });
 
@@ -237,7 +237,7 @@ void main() {
 
     expectTestFailed(
       liveTest,
-      "No expect-error found for code UNDEFINED_CLASS but an error was found: Undefined class 'NoSuchType'.",
+      "No expect-error found for code undefined_class but an error was found: Undefined class 'NoSuchType'.",
     );
   });
   test('first test fails, second succeeds', () async {
@@ -248,7 +248,7 @@ void main() {
 
     expectTestFailed(
       liveTest,
-      "No expect-error found for code UNDEFINED_CLASS but an error was found: Undefined class 'NoSuchType'.",
+      "No expect-error found for code undefined_class but an error was found: Undefined class 'NoSuchType'.",
     );
   });
   test('both test fail', () async {
@@ -263,10 +263,10 @@ void main() {
     expect(
         liveTest.errors.first.error,
         isTestFailure(
-            "No expect-error found for code UNDEFINED_CLASS but an error was found: Undefined class 'NoSuchType'."));
+            "No expect-error found for code undefined_class but an error was found: Undefined class 'NoSuchType'."));
     expect(
         liveTest.errors[1].error,
         isTestFailure(
-            "No expect-error found for code UNDEFINED_CLASS but an error was found: Undefined class 'NoSuchType'."));
+            "No expect-error found for code undefined_class but an error was found: Undefined class 'NoSuchType'."));
   });
 }

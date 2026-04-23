@@ -10,7 +10,7 @@ import 'counter.dart';
 
 void main() {
   final counter = Counter();
-  // expect-error: INVALID_ASSIGNMENT
+  // expect-error: invalid_assignment
   counter.count = 'string';
 }
 '''), compiles);
