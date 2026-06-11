@@ -1,4 +1,4 @@
-## Unreleased 1.0.15
+## 1.0.15 - 2026-06-11
 
 Support analyzer 13.0
 
