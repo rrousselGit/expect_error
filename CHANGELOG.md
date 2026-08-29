@@ -1,3 +1,7 @@
+## 1.0.16 - 2026-08-29
+
+Support analyzer 14.0
+
 ## 1.0.15 - 2026-06-11
 
 Support analyzer 13.0
